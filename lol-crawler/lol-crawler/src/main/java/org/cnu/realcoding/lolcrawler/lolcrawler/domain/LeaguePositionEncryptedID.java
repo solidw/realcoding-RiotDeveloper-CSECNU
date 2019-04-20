@@ -6,6 +6,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class LeaguePositionEncryptedID {
+    @Data
     private class miniSeriesDTO {
         String progress;
         int losses;

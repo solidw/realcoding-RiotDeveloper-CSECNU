@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SummonerLeaguePositionRepository {
+public class LeaguePositionRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
