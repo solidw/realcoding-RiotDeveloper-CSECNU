@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class RiotController {
     @Autowired
@@ -18,7 +20,7 @@ public class RiotController {
 
     @Autowired
     private OpenLeaguePositionEncryptedIDApiClient openLeaguePositionEncryptedIDApiClient;
-    private LeaguePositionEncryptedID leaguePositionEncryptedID;
+    private List<LeaguePositionEncryptedID> leaguePositionEncryptedID;
 
     @RequestMapping("/")
     public String index() {
@@ -32,7 +34,7 @@ public class RiotController {
     }
 
     @RequestMapping("/ID/{ID}")
-    public LeaguePositionEncryptedID indexFromID(@PathVariable String ID) {
+    public List<LeaguePositionEncryptedID> indexFromID(@PathVariable String ID) {
         leaguePositionEncryptedID = openLeaguePositionEncryptedIDApiClient.getLeaguePositionEncryptedID(ID);
 
         return leaguePositionEncryptedID;

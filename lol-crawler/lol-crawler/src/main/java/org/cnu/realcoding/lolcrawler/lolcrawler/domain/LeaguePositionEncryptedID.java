@@ -1,7 +1,9 @@
 package org.cnu.realcoding.lolcrawler.lolcrawler.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class LeaguePositionEncryptedID {
     private class miniSeriesDTO {
