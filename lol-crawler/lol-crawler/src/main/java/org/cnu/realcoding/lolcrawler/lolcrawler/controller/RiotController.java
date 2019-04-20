@@ -27,14 +27,17 @@ public class RiotController {
         return "Go to localhost:8080/index.html";
     }
 
-    @RequestMapping("/Summoner/{name}")
+    @RequestMapping("/summoner/{name}")
     public LeaguePositionSummonerName index(@PathVariable String name) {
         leaguePositionSummonerName = openLeaguePositionSummonerNameApiClient.getLeaguePositionByName(name);
         return leaguePositionSummonerName;
     }
 
-    @RequestMapping("/ID/{ID}")
-    public List<LeaguePositionEncryptedID> indexFromID(@PathVariable String ID) {
+    @RequestMapping("/search/{name}")
+    public List<LeaguePositionEncryptedID> indexFromID(@PathVariable String name) {
+        String ID = "";
+        leaguePositionSummonerName = openLeaguePositionSummonerNameApiClient.getLeaguePositionByName(name);
+        ID = leaguePositionSummonerName.getId();
         leaguePositionEncryptedID = openLeaguePositionEncryptedIDApiClient.getLeaguePositionEncryptedID(ID);
 
         return leaguePositionEncryptedID;
