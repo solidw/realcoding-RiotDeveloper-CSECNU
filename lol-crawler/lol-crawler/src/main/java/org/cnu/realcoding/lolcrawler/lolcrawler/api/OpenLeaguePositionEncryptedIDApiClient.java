@@ -17,7 +17,7 @@ public class OpenLeaguePositionEncryptedIDApiClient {
 
     private String requestUrl = "https://kr.api.riotgames.com/lol/league/v4/positions/by-summoner/{encryptedID}?api_key={apiKey}";
 
-    public List<LeaguePositionEncryptedID> getLeaguePositionEncryptedID(String ID) {
+    public List<LeaguePositionEncryptedID> getLeaguePositionEncryptedIDs(String ID) {
         ResponseEntity<List<LeaguePositionEncryptedID>> leaguePositionResponse =
                 restTemplate.exchange(requestUrl,
                         HttpMethod.GET,
@@ -32,11 +32,3 @@ public class OpenLeaguePositionEncryptedIDApiClient {
         return leaguePositions;
     }
 }
-//    public LeaguePositionEncryptedID getLeaguePositionEncryptedID (String ID) {
-//        return restTemplate.exchange(requestUrl,
-//                HttpMethod.GET,
-//                null,
-//                LeaguePositionEncryptedID.class,
-//                ID,
-//                "RGAPI-cc5d4edd-28d3-4a8b-ae28-f4e8c4e24c27").getBody();
-//    }

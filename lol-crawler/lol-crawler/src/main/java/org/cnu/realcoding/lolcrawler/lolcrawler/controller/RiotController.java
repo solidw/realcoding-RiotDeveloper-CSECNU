@@ -4,6 +4,7 @@ import org.cnu.realcoding.lolcrawler.lolcrawler.api.OpenLeaguePositionEncryptedI
 import org.cnu.realcoding.lolcrawler.lolcrawler.api.OpenLeaguePositionSummonerNameApiClient;
 import org.cnu.realcoding.lolcrawler.lolcrawler.domain.LeaguePositionEncryptedID;
 import org.cnu.realcoding.lolcrawler.lolcrawler.domain.LeaguePositionSummonerName;
+import org.cnu.realcoding.lolcrawler.lolcrawler.repository.LeaguePositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,14 +21,12 @@ public class RiotController {
 
     @Autowired
     private OpenLeaguePositionEncryptedIDApiClient openLeaguePositionEncryptedIDApiClient;
-    private List<LeaguePositionEncryptedID> leaguePositionEncryptedID;
+    private List<LeaguePositionEncryptedID> leaguePositionEncryptedIDs;
 
-    @RequestMapping("/")
-    public String index() {
-        return "Go to localhost:8080/index.html";
-    }
+    @Autowired
+    LeaguePositionRepository leaguePositionRepository;
 
-    @RequestMapping("/summoner/{name}")
+    @RequestMapping("/summonerEncryptedID/{name}")
     public LeaguePositionSummonerName index(@PathVariable String name) {
         leaguePositionSummonerName = openLeaguePositionSummonerNameApiClient.getLeaguePositionByName(name);
         return leaguePositionSummonerName;
@@ -38,8 +37,8 @@ public class RiotController {
         String ID = "";
         leaguePositionSummonerName = openLeaguePositionSummonerNameApiClient.getLeaguePositionByName(name);
         ID = leaguePositionSummonerName.getId();
-        leaguePositionEncryptedID = openLeaguePositionEncryptedIDApiClient.getLeaguePositionEncryptedID(ID);
-
-        return leaguePositionEncryptedID;
+        leaguePositionEncryptedIDs = openLeaguePositionEncryptedIDApiClient.getLeaguePositionEncryptedIDs(ID);
+        leaguePositionRepository.insertLeaguePosition(leaguePositionEncryptedIDs);
+        return leaguePositionEncryptedIDs;
     }
 }
