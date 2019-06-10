@@ -27,16 +27,16 @@ public class WeatherService {
         return availableCityNameService.getAvailableCityNames();
     }
 
-    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
-    public void getCurrentWeatherPeriodically() {
-        if(queue.isEmpty()) {
-            queue.addAll(this.getAvailableCityNames());
-        }
-        String target = queue.pop();
-        queue.add(target);
-
-        CurrentWeather currentWeather = openWeatherMapApiClient.getCurrentWeather(target);
-        currentWeatherRepository.insertCurrentWeather(currentWeather);
-    }
+//    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
+//    public void getCurrentWeatherPeriodically() {
+//        if(queue.isEmpty()) {
+//            queue.addAll(this.getAvailableCityNames());
+//        }
+//        String target = queue.pop();
+//        queue.add(target);
+//
+//        CurrentWeather currentWeather = openWeatherMapApiClient.getCurrentWeather(target);
+//        currentWeatherRepository.insertCurrentWeather(currentWeather);
+//    }
 
 }
